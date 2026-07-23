@@ -1,8 +1,11 @@
-// Installer orchestrator. M1: discovery + dry-run plan. M2 wires each step to
-// real file operations. The STEPS list is the single source of truth for the
-// nine-step habitat install, so front doors and docs stay in sync.
+// Installer orchestrator. discover -> present -> confirm -> write steps -> summary.
+// STEPS is the single source of truth for the nine-step habitat install so
+// front doors and docs stay in sync.
 import { existsSync } from "node:fs";
 import { join } from "node:path";
+import { makePrompt } from "./prompts.js";
+import { makeScaffold } from "./scaffold.js";
+import { WRITE_STEPS } from "./steps.js";
 
 export const STEPS = [
   { key: "discover", title: "Discover", detail: "stack, CI, tests, existing habitat files" },
@@ -16,7 +19,6 @@ export const STEPS = [
   { key: "ci", title: "CI", detail: "GitHub Actions / generic CI templates" },
 ];
 
-// Files whose presence signals an existing (partial) habitat.
 const PROBE = [
   "HARNESS.md",
   "MODEL_ROUTING.md",
@@ -33,28 +35,48 @@ export function discover(dir) {
   return found;
 }
 
-export async function runInit({ dir, dryRun }) {
-  console.log(`\nai-literacy-habitat · target: ${dir}\n`);
+export async function runInit({ root, dir, dryRun, yes }) {
+  const log = console.log;
+  log(`\nai-literacy-habitat · target: ${dir}${dryRun ? "  (dry run)" : ""}\n`);
 
   const found = discover(dir);
-  console.log("Discovery:");
+  log("Discovery:");
   for (const [p, present] of Object.entries(found)) {
-    console.log(`  ${present ? "present" : "absent "}  ${p}`);
+    log(`  ${present ? "present" : "absent "}  ${p}`);
   }
 
-  console.log("\nPlanned steps (full habitat):");
-  for (const [i, s] of STEPS.entries()) {
-    console.log(`  ${i + 1}. ${s.title.padEnd(20)} ${s.detail}`);
-  }
+  log("\nPlanned steps (full habitat):");
+  for (const [i, s] of STEPS.entries()) log(`  ${i + 1}. ${s.title.padEnd(20)} ${s.detail}`);
 
-  if (dryRun) {
-    console.log("\n--dry-run: no files written.\n");
-    return;
-  }
+  const prompt = makePrompt({ yes });
+  try {
+    if (!dryRun) {
+      const go = await prompt.confirm("\nProceed and write these into the project?", true);
+      if (!go) {
+        log("\nAborted — nothing written.\n");
+        return;
+      }
+    }
 
-  // M2 implements the write path (interactive prompts + idempotent scaffolding).
-  console.log(
-    "\n[M1 scaffold] The install engine is not wired to write yet. " +
-    "Re-run with --dry-run to preview, or track progress in README milestones.\n"
-  );
+    const scaffold = makeScaffold({ dir, dryRun, log });
+    const templates = join(root, "templates", "habitat");
+    const ctx = { root, dir, templates, scaffold, prompt, dryRun, yes, log };
+
+    log("");
+    for (const step of WRITE_STEPS) {
+      // eslint-disable-next-line no-await-in-loop
+      await step(ctx);
+    }
+
+    const { created, skipped, updated, dirs } = scaffold.results;
+    log(
+      `\nSummary: ${created.length} created, ${updated.length} updated, ` +
+      `${skipped.length} skipped, ${dirs.length} dirs.${dryRun ? " (dry run — nothing written)" : ""}\n`,
+    );
+    if (!dryRun) {
+      log("Next: open the project in Claude Code and run /superpowers-status to confirm sentinels are active.\n");
+    }
+  } finally {
+    prompt.close();
+  }
 }

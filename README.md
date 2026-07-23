@@ -57,6 +57,8 @@ under the Apache License 2.0 — see `LICENSE`, `NOTICE`, `CHANGES.md`.
 
 ## Status
 
-Early scaffold. Milestones: **M1** repo + snapshot ✅ · M2 interactive `init` ·
-M3 sentinel vendoring + hook + reservoir · M4 plugin + bootstrap · M5 test +
-publish.
+Working installer. Milestones: **M1** repo + snapshot ✅ · **M2** interactive
+`init` write path ✅ · **M3** sentinel vendoring + hook + reservoir opt-in ✅
+(folded into M2) · M4 plugin native artifacts + bootstrap end-to-end · M5 test
+against scratch repo + publish. `init` scaffolds the full habitat, is idempotent,
+supports `--dry-run` / `--yes`.
