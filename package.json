@@ -1,0 +1,37 @@
+{
+  "name": "ai-literacy-habitat",
+  "version": "0.1.0",
+  "description": "One-command interactive installer for the AI Literacy habitat — agents, sentinels, harness, hooks, model routing, CI — into any project.",
+  "type": "module",
+  "bin": {
+    "ai-literacy-habitat": "bin/cli.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "Apache-2.0",
+  "author": "Joshua Edwards",
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "plugin",
+    "LICENSE",
+    "NOTICE",
+    "CHANGES.md",
+    "README.md"
+  ],
+  "scripts": {
+    "sync-upstream": "bash scripts/sync-upstream.sh",
+    "test": "node --test"
+  },
+  "keywords": [
+    "ai-literacy",
+    "claude-code",
+    "agents",
+    "sentinels",
+    "harness",
+    "scaffolding",
+    "installer"
+  ]
+}
