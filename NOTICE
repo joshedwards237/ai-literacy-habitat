@@ -1,0 +1,14 @@
+ai-literacy-habitat
+Copyright 2026 Joshua Edwards
+
+This product includes software derived from "ai-literacy-superpowers"
+(https://github.com/Habitat-Thinking/ai-literacy-superpowers),
+Copyright 2026 Russ Miles, licensed under the Apache License, Version 2.0.
+
+ai-literacy-habitat is an independent derivative work. It is NOT affiliated
+with, sponsored by, or endorsed by Habitat-Thinking or Russ Miles. Any use of
+the upstream project's name is nominative, to identify the origin of the
+redistributed material only.
+
+Significant modifications relative to the upstream work are recorded in
+CHANGES.md, per Section 4(b) of the Apache License, Version 2.0.
