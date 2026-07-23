@@ -7,7 +7,7 @@
   "description": "Marketplace listing for the ai-literacy-habitat Claude Code plugin — the front door over the ai-literacy-habitat CLI installer.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/joshuaedwards/ai-literacy-habitat"
+    "url": "https://github.com/joshedwards237/ai-literacy-habitat"
   },
   "plugins": [
     {

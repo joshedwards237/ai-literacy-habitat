@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # curl | bash bootstrap for ai-literacy-habitat.
 #
-#   curl -fsSL https://raw.githubusercontent.com/joshuaedwards/ai-literacy-habitat/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/joshedwards237/ai-literacy-habitat/main/install.sh | bash
 #
 # It only checks prerequisites and hands off to the CLI engine via npx, so the
 # single source of truth stays the Node installer — not this shell.
