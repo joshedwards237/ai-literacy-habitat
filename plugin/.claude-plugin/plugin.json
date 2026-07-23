@@ -1,0 +1,15 @@
+{
+  "name": "ai-literacy-habitat",
+  "version": "0.1.0",
+  "description": "Front door for the AI Literacy habitat installer — ships /habitat-init, which runs the ai-literacy-habitat CLI to scaffold agents, sentinels, harness, hooks, and CI into the project.",
+  "author": {
+    "name": "Joshua Edwards"
+  },
+  "keywords": [
+    "ai-literacy",
+    "habitat",
+    "sentinels",
+    "harness",
+    "installer"
+  ]
+}

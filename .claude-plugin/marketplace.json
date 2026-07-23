@@ -1,0 +1,20 @@
+{
+  "name": "ai-literacy-habitat",
+  "owner": {
+    "name": "Joshua Edwards"
+  },
+  "version": "0.1.0",
+  "description": "Marketplace listing for the ai-literacy-habitat Claude Code plugin — the front door over the ai-literacy-habitat CLI installer.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshuaedwards/ai-literacy-habitat"
+  },
+  "plugins": [
+    {
+      "name": "ai-literacy-habitat",
+      "source": "./plugin",
+      "description": "Install the full AI Literacy habitat into a project via /habitat-init. Derived from ai-literacy-superpowers (Apache-2.0); not affiliated.",
+      "version": "0.1.0"
+    }
+  ]
+}
