@@ -5,6 +5,38 @@ agents, the sentinel family, the harness, hooks, model routing, compound
 learning, and CI — into any project, prompting you for the decisions that need a
 human.
 
+## Quick start — install & set up (Claude Code plugin)
+
+Run these **in order** inside Claude Code. This is the full progression that
+installs the plugin and scaffolds the entire habitat into your project:
+
+```
+1.  /plugin marketplace add joshedwards237/ai-literacy-habitat
+2.  /plugin install ai-literacy-habitat@ai-literacy-habitat
+3.  /habitat-init
+```
+
+Then run the onboarding sequence to activate and verify:
+
+```
+4.  /superpowers-status     confirm the habitat is active (5 sentinels)
+5.  /harness-init           discover your stack + wire real enforcement
+6.  /assess                 baseline your AI-literacy level + README badge
+7.  /reflect                capture learnings after your first task
+```
+
+**Each step does a distinct thing — none is skippable:**
+
+| Step | What it does |
+|------|--------------|
+| 1. `marketplace add` | Registers the catalog. "Successfully added marketplace" — **nothing installed yet.** |
+| 2. `plugin install` | Loads the plugin's commands/agents/skills/hooks into Claude Code. Still writes nothing to your repo. |
+| 3. `/habitat-init` | **Runs the installer** — scaffolds HARNESS.md, vendors sentinels, hooks, routing, CI into your repo. |
+| 4–7 | Verify + wire real enforcement. The scaffolded `HARNESS.md` is generic until `/harness-init` runs. |
+
+Prefer no plugin? `npx ai-literacy-habitat init` does step 3 directly (scaffold
+only, none of the live command surface). See [Install](#install) for all paths.
+
 > **Not affiliated with Habitat-Thinking or Russ Miles.** This is an independent
 > derivative of the Apache-2.0 [ai-literacy-superpowers](https://github.com/Habitat-Thinking/ai-literacy-superpowers)
 > framework. See `NOTICE` and `CHANGES.md`.
@@ -19,9 +51,12 @@ Install the plugin once, then scaffold any project from inside Claude Code:
 
 ```
 /plugin marketplace add joshedwards237/ai-literacy-habitat
-/plugin install ai-literacy-habitat
+/plugin install ai-literacy-habitat@ai-literacy-habitat
 /habitat-init        # run inside the project you want to set up
 ```
+
+See [Quick start](#quick-start--install--set-up-claude-code-plugin) for the full
+step-by-step with what each command does.
 
 `/plugin marketplace add` reads `.claude-plugin/marketplace.json` from the
 repo's **default branch** (`main`), so the plugin is only installable once the
@@ -87,6 +122,66 @@ confirmation.
 inside Claude Code to discover your real stack and wire actual enforcement — the
 scaffold alone does not enforce anything. The bootstrap's closing section spells
 out the full onboarding sequence.
+
+## Plugin commands
+
+Installing the plugin (Quick start step 2) adds these 29 slash commands to Claude
+Code. If a name collides with another plugin, Claude Code prefixes it —
+`/ai-literacy-habitat:habitat-init`; type `/` and browse if a bare name does not
+resolve.
+
+**Setup / scaffold**
+
+| Command | What it does |
+|---------|--------------|
+| `/habitat-init` | Scaffold the habitat into this repo (runs the CLI). **The one to use.** |
+| `/superpowers-init` | Upstream's own full setup (overlaps `/habitat-init`) |
+| `/harness-init` | Set up the living harness — stack discovery + enforcement |
+| `/superpowers-status` | Full habitat health — harness, agents, learning, routing, CI |
+| `/harness-status` · `/harness-health` | Harness enforcement snapshots |
+
+**Sentinels (run an agent on demand)**
+
+| Command | What it does |
+|---------|--------------|
+| `/carpaccio` | Slice a task into thin end-to-end-complete pieces |
+| `/diaboli` | Adversarial review of a spec or implementation |
+| `/choice-cartograph` | Reconstruct the decisions a spec implies |
+| `/cost-estimate` | Estimate tokens / compute / cost before running |
+| `/reservoir` | Watch the human verifier (fatigue proxies) |
+
+**Harness management**
+
+| Command | What it does |
+|---------|--------------|
+| `/harness-constrain` | Add a constraint or promote an unverified one |
+| `/harness-audit` | Meta-verify HARNESS.md against reality |
+| `/harness-gc` | Manage / run garbage-collection rules |
+| `/harness-affordance` | Manage the declared tool/affordance inventory |
+| `/harness-sync` | Detect drift across control surfaces |
+| `/harness-upgrade` | Adopt new template content after a plugin upgrade |
+| `/harness-onboarding` | Generate a human-readable onboarding doc |
+
+**Governance**
+
+| Command | What it does |
+|---------|--------------|
+| `/governance-audit` | Deep governance investigation — drift, debt, alignment |
+| `/governance-constrain` | Author governance constraints |
+| `/governance-health` | Governance health snapshot |
+
+**Conventions / cost / assessment / misc**
+
+| Command | What it does |
+|---------|--------------|
+| `/extract-conventions` | Guided extraction of tacit team conventions |
+| `/convention-sync` | Sync conventions to Cursor / Copilot / Windsurf |
+| `/cost-capture` | Record spend from provider dashboards |
+| `/assess` | AI-literacy assessment + README badge |
+| `/portfolio-assess` | Assess AI literacy across multiple repos |
+| `/reflect` | Capture a reflection after completing work |
+| `/observatory-verify` | Verify Observatory data signals are present |
+| `/worktree` | Manage git worktrees for parallel agent isolation |
 
 ## Snapshot & license
 
