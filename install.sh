@@ -123,7 +123,14 @@ fi
 if [ "$MISS" -eq 0 ]; then
   rm -f "$STATE"
   printf '\n%s%s✓ habitat installed%s  %s\n' "$BOLD" "$GREEN" "$RESET" "$TARGET"
-  note "next: open the project in Claude Code and run /superpowers-status"
+  section "next steps"
+  printf '  %s1.%s Open this project in %sClaude Code%s\n' "$BOLD" "$RESET" "$BOLD" "$RESET"
+  printf '  %s2.%s %s/superpowers-status%s   %ssee what is active (confirm 5 sentinels)%s\n' "$BOLD" "$RESET" "$CYAN" "$RESET" "$DIM" "$RESET"
+  printf '  %s3.%s %s/harness-init%s         %sdiscover your stack + wire real enforcement%s\n' "$BOLD" "$RESET" "$CYAN" "$RESET" "$DIM" "$RESET"
+  printf '                          %s(the scaffolded HARNESS.md is generic)%s\n' "$DIM" "$RESET"
+  printf '  %s4.%s %s/assess%s               %sbaseline your AI-literacy level + README badge%s\n' "$BOLD" "$RESET" "$CYAN" "$RESET" "$DIM" "$RESET"
+  printf '  %s5.%s %s/reflect%s              %scapture learnings after your first task%s\n' "$BOLD" "$RESET" "$CYAN" "$RESET" "$DIM" "$RESET"
+  printf '\n'
 else
   printf '\n'
   warn "install finished with warnings — checkpoint kept at $STATE"
