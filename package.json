@@ -23,7 +23,10 @@
   ],
   "scripts": {
     "sync-upstream": "bash scripts/sync-upstream.sh",
-    "test": "node --test"
+    "build-plugin": "bash scripts/build-plugin.sh",
+    "test": "node --test",
+    "test:scratch": "bash scripts/test-scratch.sh",
+    "prepublishOnly": "npm test && npm run test:scratch"
   },
   "keywords": [
     "ai-literacy",
