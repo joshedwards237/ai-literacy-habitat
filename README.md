@@ -11,9 +11,14 @@ Run these **in order** inside Claude Code. This is the full progression that
 installs the plugin and scaffolds the entire habitat into your project:
 
 ```
-1.  /plugin marketplace add joshedwards237/ai-literacy-habitat
-2.  /plugin install ai-literacy-habitat@ai-literacy-habitat
-3.  /habitat-init
+# Register the marketplace catalog in Claude Code
+/plugin marketplace add joshedwards237/ai-literacy-habitat
+
+# Install the plugin (loads its commands, agents, and hooks)
+/plugin install ai-literacy-habitat@ai-literacy-habitat
+
+# Scaffold the full habitat into your repo
+/habitat-init
 ```
 
 Then run the onboarding sequence to activate and verify:
